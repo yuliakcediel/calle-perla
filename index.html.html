@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calle Perla — Conexión Joven · IE Remigio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1a6b3a;
+    --verde-claro: #2d9a55;
+    --verde-neon: #4cde80;
+    --amarillo: #f5c400;
+    --blanco: #f7f7f2;
+    --negro: #0d1a0f;
+    --gris: #e8ede9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2rem;
+    background: rgba(13,26,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(76,222,128,0.15);
+  }
+
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.06em;
+    color: var(--verde-neon);
+    text-decoration: none;
+  }
+  .logo span { color: var(--amarillo); }
+
+  .nav-links {
+    display: flex; gap: 1.8rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--blanco);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    transition: opacity .2s, color .2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--verde-neon); }
+
+  .btn-cta {
+    background: var(--amarillo);
+    color: var(--negro);
+    padding: 0.55rem 1.3rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245,196,0,0.4);
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(26,107,58,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 10% 80%, rgba(76,222,128,0.1) 0%, transparent 60%),
+      linear-gradient(180deg, var(--negro) 0%, #0d2214 100%);
+  }
+
+  /* animated leaf particles */
+  .leaf { 
+    position: absolute; opacity: 0.12; font-size: 3rem;
+    animation: float 8s ease-in-out infinite;
+  }
+  .leaf:nth-child(1) { top: 15%; left: 68%; animation-delay: 0s; font-size: 5rem; }
+  .leaf:nth-child(2) { top: 55%; left: 80%; animation-delay: 2s; font-size: 2rem; }
+  .leaf:nth-child(3) { top: 30%; left: 55%; animation-delay: 4s; font-size: 3.5rem; }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-content { position: relative; z-index: 1; max-width: 780px; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(76,222,128,0.15);
+    border: 1px solid var(--verde-neon);
+    color: var(--verde-neon);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  h1 em { font-style: normal; color: var(--verde-neon); }
+  h1 .amarillo { color: var(--amarillo); }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    max-width: 500px;
+    opacity: 0.8;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--verde-neon);
+    color: var(--negro);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(76,222,128,0.45);
+  }
+
+  .btn-secondary {
+    border: 1px solid rgba(247,247,242,0.3);
+    color: var(--blanco);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--blanco);
+    background: rgba(255,255,255,0.06);
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 4rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    animation: fadeUp 0.6s 0.4s ease both;
+    flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--verde-neon);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; opacity: 0.55; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1080px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--verde-neon);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.25em;
+    color: var(--amarillo);
+    margin-top: -0.8rem;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.15s ease both;
+    text-transform: uppercase;
+  }
+
+  /* ── NOVEDADES 2026 ── */
+  #novedades { background: #0a1a0c; }
+
+  .novedades-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem;
+  }
+
+  .novedad-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--amarillo);
+    color: var(--negro);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 0.5rem;
+  }
+  .novedad-badge::before { content: '●'; animation: blink 1.2s ease infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .novedades-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .novedad-video-card {
+    background: rgba(26,107,58,0.1);
+    border: 1px solid rgba(76,222,128,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%; padding-bottom: 56.25%;
+    background: #040d06;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .video-wrapper iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+
+  .video-fallback {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+    background: linear-gradient(135deg, #0d2214, #1a3a20);
+  }
+
+  .play-btn {
+    width: 64px; height: 64px;
+    background: var(--verde-neon);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    border: none;
+  }
+  .play-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(76,222,128,0.5);
+  }
+
+  .video-label { font-size: 0.85rem; opacity: 0.6; letter-spacing: 0.05em; }
+
+  .novedad-video-body { padding: 1.5rem; }
+  .novedad-video-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; line-height: 1.3; }
+  .novedad-video-text { font-size: 0.85rem; opacity: 0.65; }
+
+  .novedades-list { display: flex; flex-direction: column; gap: 1rem; }
+
+  .novedad-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: border-color .25s, background .25s;
+    cursor: default;
+  }
+  .novedad-item:hover {
+    border-color: rgba(76,222,128,0.3);
+    background: rgba(26,107,58,0.08);
+  }
+
+  .novedad-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .novedad-text-wrap { }
+  .novedad-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 0.3rem; line-height: 1.3; }
+  .novedad-desc { font-size: 0.8rem; opacity: 0.55; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .novedades-grid { grid-template-columns: 1fr; }
+    .novedades-header { flex-direction: column; align-items: flex-start; }
+  }
+
+  #corredores { background: #0d2214; }
+
+  .corredores-intro {
+    max-width: 600px;
+    opacity: 0.75;
+    margin-bottom: 3rem;
+  }
+
+  .corredores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .corredor-card {
+    background: rgba(26,107,58,0.15);
+    border: 1px solid rgba(76,222,128,0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform .3s, border-color .3s;
+    cursor: pointer;
+  }
+  .corredor-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--verde-neon);
+  }
+
+  .card-img {
+    width: 100%; height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img-1 { background: linear-gradient(135deg, #1a4a2e, #2d7a45); }
+  .card-img-2 { background: linear-gradient(135deg, #2a5a20, #4a8a35); }
+  .card-img-3 { background: linear-gradient(135deg, #1a3a4a, #2a6a5a); }
+  .card-img-4 { background: linear-gradient(135deg, #3a4a10, #5a7a20); }
+
+  .card-photo-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+  }
+  .card-photo-placeholder span { font-size: 2.5rem; }
+  .card-photo-placeholder p { font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  .card-body { padding: 1.2rem 1.4rem; }
+
+  .card-author {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .author-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--verde-claro);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .author-info { }
+  .author-name { font-size: 0.8rem; font-weight: 600; }
+  .author-grade { font-size: 0.72rem; opacity: 0.55; }
+
+  .card-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+  .card-text { font-size: 0.85rem; opacity: 0.65; line-height: 1.5; }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    background: rgba(76,222,128,0.15);
+    color: var(--verde-neon);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+  }
+
+  /* ── REPORTAJES ── */
+  #reportajes { background: var(--negro); }
+
+  .reportajes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .reportaje-featured {
+    grid-column: 1 / -1;
+    background: rgba(26,107,58,0.12);
+    border: 1px solid rgba(76,222,128,0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    display: flex; gap: 2rem; align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .rep-emoji { font-size: 5rem; flex-shrink: 0; }
+
+  .rep-content { flex: 1; min-width: 200px; }
+  .rep-tag {
+    display: inline-block;
+    background: var(--amarillo);
+    color: var(--negro);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.7rem;
+    border-radius: 100px;
+    margin-bottom: 0.8rem;
+  }
+  .rep-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; line-height: 1; margin-bottom: 0.7rem; }
+  .rep-desc { font-size: 0.9rem; opacity: 0.7; margin-bottom: 1.2rem; }
+  .rep-meta { font-size: 0.8rem; opacity: 0.5; }
+
+  .reportaje-mini {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: border-color .25s, background .25s;
+    cursor: pointer;
+  }
+  .reportaje-mini:hover {
+    border-color: rgba(76,222,128,0.4);
+    background: rgba(26,107,58,0.1);
+  }
+  .mini-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+  .mini-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; line-height: 1.3; }
+  .mini-author { font-size: 0.78rem; opacity: 0.5; }
+
+  /* ── GALERÍA ── */
+  #galeria { background: #040d06; }
+
+  .galeria-desc { max-width: 500px; opacity: 0.7; margin-bottom: 2.5rem; }
+
+  .galeria-masonry {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 160px;
+    gap: 1rem;
+  }
+
+  .gal-item {
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    transition: transform .3s;
+    cursor: pointer;
+  }
+  .gal-item:hover { transform: scale(1.03); z-index: 2; }
+  .gal-item.tall { grid-row: span 2; }
+
+  .gal-1 { background: linear-gradient(135deg, #1a5c2e, #3a8c50); }
+  .gal-2 { background: linear-gradient(135deg, #2a4a1a, #5a7a30); }
+  .gal-3 { background: linear-gradient(135deg, #1a3c5c, #2a6a7a); }
+  .gal-4 { background: linear-gradient(135deg, #4a3a10, #7a6020); }
+  .gal-5 { background: linear-gradient(135deg, #3a1a4a, #5a3a7a); }
+  .gal-6 { background: linear-gradient(135deg, #1a4c3a, #2a7c5a); }
+  .gal-7 { background: linear-gradient(135deg, #4a1a1a, #7a3a30); }
+
+  .gal-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex; flex-direction: column;
+    align-items: flex-start; justify-content: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity .25s;
+  }
+  .gal-item:hover .gal-overlay { opacity: 1; }
+  .gal-overlay-text { font-size: 0.82rem; font-weight: 600; }
+  .gal-overlay-author { font-size: 0.7rem; opacity: 0.7; }
+
+  .photo-placeholder {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.4rem; opacity: 0.5; pointer-events: none;
+  }
+  .photo-placeholder p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* ── PARTICIPA ── */
+  #participa { background: var(--verde); }
+
+  .participa-inner {
+    max-width: 700px; margin: 0 auto; text-align: center;
+  }
+  #participa h2 { color: var(--negro); }
+  .participa-sub { color: rgba(13,26,15,0.75); font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+  .participa-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+  .p-card {
+    background: rgba(13,26,15,0.12);
+    border-radius: 14px;
+    padding: 1.3rem;
+  }
+  .p-card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+  .p-card-title { font-weight: 700; font-size: 0.9rem; color: var(--negro); margin-bottom: 0.3rem; }
+  .p-card-text { font-size: 0.8rem; color: rgba(13,26,15,0.65); }
+
+  .btn-join {
+    background: var(--negro);
+    color: var(--verde-neon);
+    padding: 1rem 2.5rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-join:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(13,26,15,0.3);
+  }
+
+  /* ── ESTUDIANTES ── */
+  .estudiantes-banner {
+    background: #0a1c0c;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(76,222,128,0.12);
+    border-bottom: 1px solid rgba(76,222,128,0.12);
+  }
+  .est-inner { max-width: 1080px; margin: 0 auto; }
+  .est-title { text-align: center; margin-bottom: 0.5rem; }
+  .est-subtitle { text-align: center; opacity: 0.5; font-size: 0.85rem; margin-bottom: 3rem; }
+
+  .est-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .est-card {
+    background: rgba(26,107,58,0.12);
+    border: 1px solid rgba(76,222,128,0.15);
+    border-radius: 14px;
+    padding: 1.2rem 1rem;
+    text-align: center;
+    transition: border-color .25s, transform .25s;
+    cursor: default;
+  }
+  .est-card:hover {
+    border-color: var(--verde-neon);
+    transform: translateY(-4px);
+  }
+
+  .est-avatar {
+    width: 56px; height: 56px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; font-weight: 700;
+    margin: 0 auto 0.7rem;
+    border: 2px solid rgba(76,222,128,0.3);
+  }
+  .av-1 { background: #1a5c3a; } .av-2 { background: #3a5a1a; }
+  .av-3 { background: #1a3a5c; } .av-4 { background: #5c3a1a; }
+  .av-5 { background: #3a1a5c; } .av-6 { background: #1a5c4a; }
+
+  .est-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .est-grade { font-size: 0.72rem; opacity: 0.5; }
+  .est-role {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: rgba(76,222,128,0.15);
+    color: var(--verde-neon);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #040d06;
+    padding: 3rem 2rem 2rem;
+    border-top: 1px solid rgba(76,222,128,0.1);
+  }
+  .footer-inner {
+    max-width: 1080px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; flex-wrap: wrap; gap: 2rem;
+  }
+  .footer-brand .logo { font-size: 2rem; }
+  .footer-tagline { font-size: 0.8rem; opacity: 0.45; margin-top: 0.4rem; }
+  .footer-copy {
+    font-size: 0.75rem; opacity: 0.3;
+    text-align: center; margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    max-width: 1080px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .reportajes-grid { grid-template-columns: 1fr; }
+    .galeria-masonry { grid-template-columns: repeat(2, 1fr); }
+    .rep-emoji { display: none; }
+    .hero { padding: 7rem 1.2rem 3rem; }
+    section { padding: 3.5rem 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="logo">Calle<span>Perla</span></a>
+  <ul class="nav-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#novedades">Novedades</a></li>
+    <li><a href="#corredores">Corredores</a></li>
+    <li><a href="#reportajes">Reportajes</a></li>
+    <li><a href="#galeria">Galería</a></li>
+  </ul>
+  <a href="#participa" class="btn-cta">Publica tu historia ↗</a>
+</nav>
+
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="hero-bg">
+    <div class="leaf">🍃</div>
+    <div class="leaf">🌿</div>
+    <div class="leaf">🍀</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">📍 IE Remigio · Pereira, Colombia</div>
+    <h1>Calle<br><em>Perla</em></h1>
+    <div class="hero-subtag">Conexión Joven</div>
+    <p class="hero-desc">
+      El medio de comunicación donde los estudiantes de IE Remigio documentan y cuentan las historias de su territorio.
+    </p>
+    <div class="hero-actions">
+      <a href="#corredores" class="btn-primary">Ver Corredores Verdes</a>
+      <a href="#reportajes" class="btn-secondary">Leer Reportajes</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">12+</div>
+        <div class="stat-label">Estudiantes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Reportajes</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Corredores</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Territorio</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOVEDADES 2026 -->
+<section id="novedades">
+  <div class="section-inner">
+    <div class="novedades-header">
+      <div>
+        <div class="novedad-badge">En vivo 2026</div>
+        <h2>Novedades<br>2026</h2>
+      </div>
+      <p style="max-width:340px; opacity:0.6; font-size:0.9rem;">Entérate de los cambios que iniciaron este año en nuestra Institución IE Remigio.</p>
+    </div>
+
+    <div class="novedades-grid">
+
+      <!-- VIDEO DESTACADO -->
+      <div class="novedad-video-card">
+        <div class="video-wrapper">
+          <!-- Reemplaza el src con el link real del video de Calle Perla -->
+          <div class="video-fallback">
+            <button class="play-btn" onclick="this.closest('.video-fallback').innerHTML='<iframe src=\'https://www.youtube.com/embed/?autoplay=1\' allow=\'autoplay\' allowfullscreen></iframe>'" aria-label="Reproducir video">▶</button>
+            <p class="video-label">Video · Novedades IE Remigio 2026</p>
+          </div>
+        </div>
+        <div class="novedad-video-body">
+          <div class="novedad-video-title">¿Sabes que ahora hay otros grados en la sede El Rocío?</div>
+          <p class="novedad-video-text">En este video los estudiantes de Calle Perla cuentan sobre esta novedad y lo que significa para la institución.</p>
+        </div>
+      </div>
+
+      <!-- LISTA DE NOVEDADES -->
+      <div class="novedades-list">
+
+        <div class="novedad-item">
+          <div class="novedad-icon">🏫</div>
+          <div class="novedad-text-wrap">
+            <div class="novedad-title">Nuevos grados en sede El Rocío</div>
+            <p class="novedad-desc">La sede amplía su oferta educativa. Más estudiantes, más voces, más historias para contar.</p>
+          </div>
+        </div>
+
+        <div class="novedad-item">
+          <div class="novedad-icon">📡</div>
+          <div class="novedad-text-wrap">
+            <div class="novedad-title">Calle Perla estrena plataforma</div>
+            <p class="novedad-desc">El medio juvenil de IE Remigio ahora tiene su propio sitio. Aquí los estudiantes publican, reportan y documentan.</p>
+          </div>
+        </div>
+
+        <div class="novedad-item">
+          <div class="novedad-icon">✍️</div>
+          <div class="novedad-text-wrap">
+            <div class="novedad-title">Convocatoria abierta 2026</div>
+            <p class="novedad-desc">¿Quieres unirte? Cuéntanos tu historia y vincúlate al medio de comunicación Calle Perla.</p>
+          </div>
+        </div>
+
+        <div class="novedad-item">
+          <div class="novedad-icon">🌿</div>
+          <div class="novedad-text-wrap">
+            <div class="novedad-title">Nuevos corredores documentados</div>
+            <p class="novedad-desc">Estudiantes recorren y fotografían zonas verdes del territorio. Los resultados, en esta web.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORREDORES VERDES -->
+<section id="corredores">
+  <div class="section-inner">
+    <p class="section-label">🌿 Territorio vivo</p>
+    <h2>Corredores<br>Verdes</h2>
+    <p class="corredores-intro">Los pulmones de nuestro barrio, documentados por quienes los recorren cada día.</p>
+
+    <div class="corredores-grid">
+
+      <div class="corredor-card">
+        <div class="card-img card-img-1">
+          <div class="card-photo-placeholder">
+            <span>📷</span>
+            <p>Foto del estudiante</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-author">
+            <div class="author-avatar">LM</div>
+            <div class="author-info">
+              <div class="author-name">Laura Martínez</div>
+              <div class="author-grade">Grado 10°</div>
+            </div>
+          </div>
+          <div class="card-title">El Corredor del Río Otún</div>
+          <p class="card-text">Un recorrido por la franja verde que conecta el parque con el río. Aún vive, aún respira.</p>
+          <span class="card-tag">Corredor Norte</span>
+        </div>
+      </div>
+
+      <div class="corredor-card">
+        <div class="card-img card-img-2">
+          <div class="card-photo-placeholder">
+            <span>📷</span>
+            <p>Foto del estudiante</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-author">
+            <div class="author-avatar">SC</div>
+            <div class="author-info">
+              <div class="author-name">Santiago Castro</div>
+              <div class="author-grade">Grado 11°</div>
+            </div>
+          </div>
+          <div class="card-title">Guadua: La madera de los pobres</div>
+          <p class="card-text">Un material olvidado que protege laderas y alimenta comunidades enteras en Risaralda.</p>
+          <span class="card-tag">Corredor Sur</span>
+        </div>
+      </div>
+
+      <div class="corredor-card">
+        <div class="card-img card-img-3">
+          <div class="card-photo-placeholder">
+            <span>📷</span>
+            <p>Foto del estudiante</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-author">
+            <div class="author-avatar">VR</div>
+            <div class="author-info">
+              <div class="author-name">Valentina Ríos</div>
+              <div class="author-grade">Grado 9°</div>
+            </div>
+          </div>
+          <div class="card-title">Aves en el Jardín del Barrio</div>
+          <p class="card-text">Cincuenta especies viven en el corredor. Nadie las ve. Nosotros fuimos a encontrarlas.</p>
+          <span class="card-tag">Corredor Central</span>
+        </div>
+      </div>
+
+      <div class="corredor-card">
+        <div class="card-img card-img-4">
+          <div class="card-photo-placeholder">
+            <span>📷</span>
+            <p>Foto del estudiante</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-author">
+            <div class="author-avatar">DN</div>
+            <div class="author-info">
+              <div class="author-name">Diego Narváez</div>
+              <div class="author-grade">Grado 10°</div>
+            </div>
+          </div>
+          <div class="card-title">La Huerta que Nadie Quería</div>
+          <p class="card-text">Un lote abandonado que los vecinos transformaron en espacio verde y comunitario.</p>
+          <span class="card-tag">Zona Oriente</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REPORTAJES -->
+<section id="reportajes">
+  <div class="section-inner">
+    <p class="section-label">✍️ Periodismo estudiantil</p>
+    <h2>Reportajes</h2>
+
+    <div class="reportajes-grid">
+
+      <div class="reportaje-featured">
+        <div class="rep-emoji">🌊</div>
+        <div class="rep-content">
+          <span class="rep-tag">Destacado</span>
+          <div class="rep-title">El río que nos enseñó a escuchar</div>
+          <p class="rep-desc">Un recorrido de tres días a lo largo del Otún para entender por qué el agua que bebemos está amenazada.</p>
+          <div class="rep-meta">Por Laura Martínez · Grado 10° · Feb 2025</div>
+        </div>
+      </div>
+
+      <div class="reportaje-mini">
+        <span class="mini-emoji">🗑️</span>
+        <div class="mini-title">Basura invisible: lo que nadie recoge</div>
+        <div class="mini-author">Santiago Castro · Grado 11°</div>
+      </div>
+
+      <div class="reportaje-mini">
+        <span class="mini-emoji">🌡️</span>
+        <div class="mini-title">Pereira a 35°C: la isla de calor que nadie nombra</div>
+        <div class="mini-author">Valentina Ríos · Grado 9°</div>
+      </div>
+
+      <div class="reportaje-mini">
+        <span class="mini-emoji">🐝</span>
+        <div class="mini-title">Las abejas del colegio y lo que nos dicen</div>
+        <div class="mini-author">Diego Narváez · Grado 10°</div>
+      </div>
+
+      <div class="reportaje-mini">
+        <span class="mini-emoji">🌱</span>
+        <div class="mini-title">Sembrar en cemento: huertas urbanas del barrio</div>
+        <div class="mini-author">Ana Gómez · Grado 11°</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="section-inner">
+    <p class="section-label">📸 Nuestro territorio</p>
+    <h2>Galería</h2>
+    <p class="galeria-desc">Fotos tomadas por los estudiantes. Sin filtros de banco de imágenes.</p>
+
+    <div class="galeria-masonry">
+      <div class="gal-item gal-1 tall">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Corredor del Otún</div>
+          <div class="gal-overlay-author">Laura M. · 10°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-2">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Guadual Norte</div>
+          <div class="gal-overlay-author">Santiago C. · 11°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-3">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Ave del barrio</div>
+          <div class="gal-overlay-author">Valentina R. · 9°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-4">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">La huerta</div>
+          <div class="gal-overlay-author">Diego N. · 10°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-5 tall">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Calle Perla</div>
+          <div class="gal-overlay-author">Ana G. · 11°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-6">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Recorrido verde</div>
+          <div class="gal-overlay-author">Juan P. · 9°</div>
+        </div>
+      </div>
+      <div class="gal-item gal-7">
+        <div class="photo-placeholder"><span>📷</span><p>Foto estudiante</p></div>
+        <div class="gal-overlay">
+          <div class="gal-overlay-text">Semillas</div>
+          <div class="gal-overlay-author">María L. · 10°</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREADO POR ESTUDIANTES -->
+<div class="estudiantes-banner">
+  <div class="est-inner">
+    <p class="section-label" style="text-align:center">🏆 El corazón del medio</p>
+    <h2 class="est-title">Creado por estudiantes</h2>
+    <p class="est-subtitle">Nombre · Foto · Grado · Rol</p>
+    <div class="est-grid">
+      <div class="est-card">
+        <div class="est-avatar av-1">LM</div>
+        <div class="est-name">Laura Martínez</div>
+        <div class="est-grade">Grado 10°</div>
+        <span class="est-role">Reportera</span>
+      </div>
+      <div class="est-card">
+        <div class="est-avatar av-2">SC</div>
+        <div class="est-name">Santiago Castro</div>
+        <div class="est-grade">Grado 11°</div>
+        <span class="est-role">Fotógrafo</span>
+      </div>
+      <div class="est-card">
+        <div class="est-avatar av-3">VR</div>
+        <div class="est-name">Valentina Ríos</div>
+        <div class="est-grade">Grado 9°</div>
+        <span class="est-role">Redactora</span>
+      </div>
+      <div class="est-card">
+        <div class="est-avatar av-4">DN</div>
+        <div class="est-name">Diego Narváez</div>
+        <div class="est-grade">Grado 10°</div>
+        <span class="est-role">Editor</span>
+      </div>
+      <div class="est-card">
+        <div class="est-avatar av-5">AG</div>
+        <div class="est-name">Ana Gómez</div>
+        <div class="est-grade">Grado 11°</div>
+        <span class="est-role">Diseñadora</span>
+      </div>
+      <div class="est-card">
+        <div class="est-avatar av-6">JP</div>
+        <div class="est-name">Juan Peña</div>
+        <div class="est-grade">Grado 9°</div>
+        <span class="est-role">Fotógrafo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARTICIPA -->
+<section id="participa">
+  <div class="participa-inner">
+    <p class="section-label" style="color:rgba(13,26,15,0.5)">✊ Únete</p>
+    <h2>¿Tienes una historia<br>que contar?</h2>
+    <p class="participa-sub">Calle Perla es tuyo. Puedes escribir, fotografiar, grabar o simplemente caminar el territorio.</p>
+
+    <div class="participa-cards">
+      <div class="p-card">
+        <div class="p-card-icon">✍️</div>
+        <div class="p-card-title">Escribe</div>
+        <p class="p-card-text">Un reportaje corto sobre algo que vives en el barrio.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-icon">📷</div>
+        <div class="p-card-title">Fotografía</div>
+        <p class="p-card-text">Con tu celular. No necesitas cámara profesional.</p>
+      </div>
+      <div class="p-card">
+        <div class="p-card-icon">🎙️</div>
+        <div class="p-card-title">Graba</div>
+        <p class="p-card-text">Un video, un audio, un recorrido. Tu voz importa.</p>
+      </div>
+    </div>
+
+    <a href="#" class="btn-join">Publica tu historia →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#inicio" class="logo">Calle<span>Perla</span></a>
+      <p class="footer-tagline">Conexión Joven · IE Remigio · Pereira, Colombia</p>
+    </div>
+    <div style="font-size:0.82rem; opacity:0.4; line-height:2;">
+      <a href="#novedades" style="display:block; color:inherit; text-decoration:none;">Novedades 2026</a>
+      <a href="#corredores" style="display:block; color:inherit; text-decoration:none;">Corredores Verdes</a>
+      <a href="#reportajes" style="display:block; color:inherit; text-decoration:none;">Reportajes</a>
+      <a href="#galeria" style="display:block; color:inherit; text-decoration:none;">Galería</a>
+      <a href="#participa" style="display:block; color:inherit; text-decoration:none;">Participa</a>
+    </div>
+  </div>
+  <p class="footer-copy">© 2026 Calle Perla · IE Remigio — Hecho con orgullo por estudiantes de Pereira.</p>
+</footer>
+
+</body>
+</html>
